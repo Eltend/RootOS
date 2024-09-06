@@ -1,0 +1,74 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdk rootProject.ext.CompileSdk
+
+    namespace 'com.candybar.sample'
+
+    defaultConfig {
+        applicationId 'com.candybar.sample'
+        minSdkVersion rootProject.ext.MinSdk
+        targetSdkVersion rootProject.ext.TargetSdk
+        versionCode 1
+        versionName '1.0'
+
+        // Naming app bundles
+        setArchivesBaseName("${parent.name}-v${versionCode}")
+    }
+
+    bundle {
+        language {
+            enableSplit false
+        }
+    }
+
+    buildTypes {
+        release {
+            debuggable false
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lint {
+        abortOnError false
+    }
+}
+
+dependencies {
+    /*
+     * CandyBar Material Dashboard Library
+     *
+     * TODO: How to update the dashboard?!
+     * Check this update guide for every version
+     *      - https://github.com/zixpo/candybar-sample/wiki/Updating-the-dashboard
+     * If you've missed some versions you've to also follow update guide for those versions
+     */
+
+    implementation 'com.github.zixpo:candybar:3.20.3'
+
+    // TODO: Remove `//` below to enable OneSignal
+    //implementation 'com.onesignal:OneSignal:[5.0.0, 5.99.99]'
+}
+
+// Code for automatically copying appfilter.xml and drawable.xml
+// from `res/xml` directory to `assets` directory
+tasks.register('copyXMLs') {
+    ['appfilter.xml', 'drawable.xml'].each { file ->
+        copy {
+            from "$projectDir/src/main/res/xml/$file"
+            into "$projectDir/src/main/assets/"
+        }
+    }
+}
+
+tasks.configureEach { task ->
+    if (task.name == 'assembleDebug' || task.name == 'assembleRelease') {
+        task.dependsOn copyXMLs
+    }
+}
