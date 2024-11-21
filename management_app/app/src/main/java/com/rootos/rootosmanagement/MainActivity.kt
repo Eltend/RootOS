@@ -1,8 +1,8 @@
 package com.rootos.rootosmanagement
 
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
+import android.view.Window
+import android.view.WindowManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
