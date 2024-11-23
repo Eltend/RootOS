@@ -1,19 +1,23 @@
 package com.rootos.managementapp
 
 import android.os.Bundle
+
 import android.widget.Button
+
 import androidx.appcompat.app.AppCompatActivity
+
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rootos.managementapp.databinding.ActivityMainBinding
-import java.io.IOException
 
 
 class MainActivity : AppCompatActivity() {
 
+
 private lateinit var binding: ActivityMainBinding
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +55,10 @@ private lateinit var binding: ActivityMainBinding
                 //Log.d("BUTTONS", "User tapped the Supabutton")
 
                 Runtime.getRuntime().exec("su -c reboot bootloader")
-
             }
+
+
+
 
     }
 }
