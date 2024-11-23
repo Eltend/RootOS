@@ -1,13 +1,15 @@
 package com.rootos.managementapp
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rootos.managementapp.databinding.ActivityMainBinding
+import java.io.IOException
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,5 +30,29 @@ private lateinit var binding: ActivityMainBinding
             R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications))
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+        findViewById<Button>(R.id.home_reboot)
+            .setOnClickListener {
+                //Log.d("BUTTONS", "User tapped the Supabutton")
+
+                Runtime.getRuntime().exec("su -c reboot")
+
+            }
+        findViewById<Button>(R.id.home_reboot_rec)
+            .setOnClickListener {
+                //Log.d("BUTTONS", "User tapped the Supabutton")
+
+                Runtime.getRuntime().exec("su -c reboot recovery")
+
+            }
+        findViewById<Button>(R.id.home_reboot_bot)
+            .setOnClickListener {
+                //Log.d("BUTTONS", "User tapped the Supabutton")
+
+                Runtime.getRuntime().exec("su -c reboot bootloader")
+
+            }
+
     }
 }
