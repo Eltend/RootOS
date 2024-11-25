@@ -33,17 +33,15 @@ private var _binding: FragmentDashboardBinding? = null
     _binding = FragmentDashboardBinding.inflate(inflater, container, false)
     val root: View = binding.root
 
-    val textView: TextView = binding.textDashboard
-    dashboardViewModel.text.observe(viewLifecycleOwner) {
-      textView.text = it
-    }
+
+        //-------------------------Does funny stuff to make the buttons in fragments work -----
         var view: View? = null
         view = layoutInflater.inflate(R.layout.fragment_dashboard,container,false)
         val button_magisk_stop = view!!.findViewById<View>(R.id.magisk_stop) as Button
         button_magisk_stop.setOnClickListener{
             Runtime.getRuntime().exec("su -c magisk --stop")
         }
-
+        //--------------------------------------------------------------------------------------
     return view
 
 
