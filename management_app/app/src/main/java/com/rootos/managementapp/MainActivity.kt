@@ -1,25 +1,31 @@
 package com.rootos.managementapp
 
+import android.os.Build
 import android.os.Bundle
+import android.os.VibrationEffect
+import android.os.Vibrator
 import android.util.Log
-
 import android.widget.Button
-
 import androidx.appcompat.app.AppCompatActivity
-
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rootos.managementapp.databinding.ActivityMainBinding
-import java.io.ByteArrayOutputStream
 
 
 class MainActivity : AppCompatActivity() {
 
-
 private lateinit var binding: ActivityMainBinding
 
+    fun button_vib() {
+        (getSystemService(VIBRATOR_SERVICE) as Vibrator).vibrate(
+            VibrationEffect.createOneShot(
+                100,
+                60
+            )
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,33 +43,6 @@ private lateinit var binding: ActivityMainBinding
         //setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
-        findViewById<Button>(R.id.home_reboot)
-            .setOnClickListener {
-                //Log.d("BUTTONS", "User tapped the Supabutton")
-
-                Runtime.getRuntime().exec("su -c reboot")
-
-            }
-        findViewById<Button>(R.id.home_reboot_rec)
-            .setOnClickListener {
-                //Log.d("BUTTONS", "User tapped the Supabutton")
-
-                Runtime.getRuntime().exec("su -c reboot recovery")
-
-            }
-        findViewById<Button>(R.id.home_reboot_bot)
-            .setOnClickListener {
-                //Log.d("BUTTONS", "User tapped the Supabutton")
-
-                Runtime.getRuntime().exec("su -c reboot bootloader")
-            }
-
-        findViewById<Button>(R.id.home_whoami)
-            .setOnClickListener {
-                //Log.d("BUTTONS", "User tapped the Supabutton")
-
-            }
 
 
 
