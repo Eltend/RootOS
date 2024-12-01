@@ -105,16 +105,22 @@ class VibratorHelper private constructor(private val context: Context) {
             // Reboot to system button
             binding.homeReboot.setOnClickListener {
                 Runtime.getRuntime().exec("su -c reboot")
+                val vibratorHelper = context?.let { VibratorHelper.from(it) }
+                vibratorHelper?.vibrate(150, 50)
             }
 
             // Reboot to recovery button
             binding.homeRebootRec.setOnClickListener {
                 Runtime.getRuntime().exec("su -c reboot recovery")
+                val vibratorHelper = context?.let { VibratorHelper.from(it) }
+                vibratorHelper?.vibrate(150, 50)
             }
 
             // Reboot to bootloader button
             binding.homeRebootBot.setOnClickListener {
                 Runtime.getRuntime().exec("su -c reboot bootloader")
+                val vibratorHelper = context?.let { VibratorHelper.from(it) }
+                vibratorHelper?.vibrate(150, 50)
             }
 
             // Test vibration and log with whoami button
