@@ -1,6 +1,7 @@
 package com.rootos.managementapp
 
 import android.os.Bundle
+import android.util.Log
 
 import android.widget.Button
 
@@ -11,6 +12,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.rootos.managementapp.databinding.ActivityMainBinding
+import java.io.ByteArrayOutputStream
 
 
 class MainActivity : AppCompatActivity() {
@@ -55,6 +57,12 @@ private lateinit var binding: ActivityMainBinding
                 //Log.d("BUTTONS", "User tapped the Supabutton")
 
                 Runtime.getRuntime().exec("su -c reboot bootloader")
+            }
+
+        findViewById<Button>(R.id.home_whoami)
+            .setOnClickListener {
+                //Log.d("BUTTONS", "User tapped the Supabutton")
+
             }
 
 
