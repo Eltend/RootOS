@@ -15,11 +15,13 @@ import com.rootos.managementapp.databinding.FragmentHomeBinding
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+//setup variablas
 
-fun whoami_button () {
+
+fun whoami_button (cmd:String) {
     try {
         var line: String?
-        val process = Runtime.getRuntime().exec("su -c whoami")
+        val process = Runtime.getRuntime().exec("su -c "+ cmd)
         val stdin = process.outputStream
         val stderr = process.errorStream
         val stdout = process.inputStream
@@ -128,7 +130,7 @@ class VibratorHelper private constructor(private val context: Context) {
                 Log.w("Debug", "Button pressed: whoami")
                 val vibratorHelper = context?.let { VibratorHelper.from(it) }
                 vibratorHelper?.vibrate(150, 50)
-                whoami_button()
+                whoami_button("whoami")
             }
 
             return view
