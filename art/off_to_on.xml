@@ -30,6 +30,7 @@
                 android:name="path_3"
                 android:pathData="M 351 10 C 337.744 10 325.018 15.271 315.645 24.645 C 306.271 34.018 301 46.744 301 60 C 301 73.256 306.271 85.982 315.645 95.355 C 325.018 104.729 337.744 110 351 110 C 364.256 110 376.982 104.729 386.355 95.355 C 395.729 85.982 401 73.256 401 60 C 401 46.744 395.729 34.018 386.355 24.645 C 376.982 15.271 364.256 10 351 10 Z"
                 android:fillColor="#ff0000"
+                android:fillAlpha="0.5"
                 android:strokeWidth="1"/>
         </vector>
     </aapt:attr>
@@ -37,7 +38,7 @@
         <aapt:attr name="android:animation">
             <objectAnimator
                 android:propertyName="fillColor"
-                android:duration="600"
+                android:duration="6000"
                 android:valueFrom="#ff0000"
                 android:valueTo="#00ff44"
                 android:valueType="colorType"

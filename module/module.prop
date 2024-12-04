@@ -2,6 +2,6 @@ id=RootOS
 name=RootOS
 version=v0.1
 versionCode=1
-author=Zackptg5
+author=Eltendo / RandomCat
 description=The flashable version of RootOS
 updateJson=https://raw.githubusercontent.com/Eltend/RootOS/master/update.json

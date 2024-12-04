@@ -10,7 +10,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.rootos.managementapp.R
 import com.rootos.managementapp.databinding.FragmentHomeBinding
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -104,6 +107,7 @@ class VibratorHelper private constructor(private val context: Context) {
 
             val view: View = binding.root
 
+
             // Reboot to system button
             binding.homeReboot.setOnClickListener {
                 Runtime.getRuntime().exec("su -c reboot")
@@ -131,13 +135,74 @@ class VibratorHelper private constructor(private val context: Context) {
                 val vibratorHelper = context?.let { VibratorHelper.from(it) }
                 vibratorHelper?.vibrate(150, 50)
                 command_output("whoami")
+
             }
 
-            return view
-        }
+            fun checkAndUpdateUI(rootView: View) {
+                // Initialize the ImageView and TextView using rootView
+                val imageView = rootView.findViewById<ImageView>(R.id.imageView)
+                val textView = rootView.findViewById<TextView>(R.id.text_home2)
 
+                // Hardcoded location to check
+                val location = "/data/adb/modules"
+
+                // Variable to track folder presence
+                var isRootOSPresent = false
+
+                try {
+                    var line: String?
+                    val process = Runtime.getRuntime()
+                        .exec("su -c ls $location") // Command to check the folder
+                    val stdin = process.outputStream
+                    val stderr = process.errorStream
+                    val stdout = process.inputStream
+
+                    // Execute the command
+                    stdin.write("exit\n".toByteArray())
+                    stdin.flush()
+                    stdin.close()
+
+                    // Check output for "RootOS"
+                    val br = BufferedReader(InputStreamReader(stdout))
+                    while (br.readLine().also { line = it } != null) {
+                        if (line == "RootOS") {
+                            isRootOSPresent = true
+                            break
+                        }
+                    }
+                    br.close()
+
+                    // Read and log any errors
+                    val brError = BufferedReader(InputStreamReader(stderr))
+                    while (brError.readLine().also { line = it } != null) {
+                        Log.e("[Error]", line!!)
+                    }
+                    brError.close()
+
+                    process.waitFor()
+                    process.destroy()
+                } catch (ex: Exception) {
+                    Log.e("[Exception]", ex.message.toString())
+                }
+
+                // Update the UI based on the result
+                if (isRootOSPresent) {
+                    imageView.setImageResource(R.drawable.on_all) // Replace with your 'true' icon
+                    textView.text = "Installed"
+                } else {
+                    imageView.setImageResource(R.drawable.off_all) // Replace with your 'false' icon
+                    textView.text = "Not Installed"
+                }
+            }
+
+            checkAndUpdateUI(view)
+
+            return view
+
+        }
         override fun onDestroyView() {
             super.onDestroyView()
             _binding = null
         }
     }
+
