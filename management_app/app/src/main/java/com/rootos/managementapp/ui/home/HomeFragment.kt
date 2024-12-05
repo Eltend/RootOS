@@ -129,14 +129,6 @@ class VibratorHelper private constructor(private val context: Context) {
                 vibratorHelper?.vibrate(150, 50)
             }
 
-            // Test vibration and log with whoami button
-            binding.homeWhoami.setOnClickListener {
-                Log.w("Debug", "Button pressed: whoami")
-                val vibratorHelper = context?.let { VibratorHelper.from(it) }
-                vibratorHelper?.vibrate(150, 50)
-                command_output("whoami")
-
-            }
 
             fun checkAndUpdateUI(rootView: View) {
                 // Initialize the ImageView and TextView using rootView

@@ -40,37 +40,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-    <TextView
-        android:id="@+id/text_home_whoami"
-        android:layout_width="116dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="11dp"
-        android:height="1000dp"
-        android:text="Not Checked"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/home_whoami"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Button
-        android:id="@+id/home_whoami"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:layout_marginBottom="496dp"
-        android:backgroundTint="#4C58AF"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
-        android:text="Whoami"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/home_reboot_bot"
-        app:layout_constraintHorizontal_bias="0.842"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <Button
         android:id="@+id/home_reboot_rec"
         android:layout_width="wrap_content"
