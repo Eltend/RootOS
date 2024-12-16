@@ -10,13 +10,11 @@
 
 # Uncomment and change 'MINAPI' and 'MAXAPI' to the minimum and maximum android version for your mod
 # Uncomment DYNLIB if you want libs installed to vendor for oreo+ and system for anything older
-# Uncomment PARTOVER if you have a workaround in place for extra partitions in regular magisk install (can mount them yourself - you will need to do this each boot as well). If unsure, keep commented
-# Uncomment PARTITIONS and list additional partitions you will be modifying (other than system and vendor), for example: PARTITIONS="/odm /product /system_ext"
-#MINAPI=21
-#MAXAPI=25
+# Uncomment DEBUG if you want full debug logs (saved to /sdcard)
+MINAPI=29
+MAXAPI=39
 #DYNLIB=true
-#PARTOVER=true
-#PARTITIONS=""
+#DEBUG=true
 
 ##########################################################################################
 # Replace list
@@ -37,7 +35,6 @@ REPLACE_EXAMPLE="
 # Construct your own list here
 REPLACE="
 "
-
 ##########################################################################################
 # Permissions
 ##########################################################################################
